@@ -1,0 +1,31 @@
+body {
+    background-color: lightgreen;
+    font-family: "Bitcount Single", system-ui;
+}
+
+h1 {
+    text-align: center;
+}
+
+.title {
+    text-decoration: underline;
+}
+
+#content {
+    font-size: 50px;
+    color: rgb(199, 190, 18)
+}
+
+#content:hover {
+    color: #2a4687;
+    font-size: 70px;
+}
+
+.container {
+    border: 5px dotted black;
+    padding-left: 10px;
+    padding-top: 30px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function computeGrade(grades){
+            let sum = 0;
+
+            //convert letter grade to numeric grade, and sum them up
+            for(let i = 0; i < grades.length; i++){
+                let grade = grades[i];
+
+                if (grade === 'A') {
+                    sum = sum + 100;
+                } else if (grade === 'B') {
+                    sum = sum + 80;
+                } else if (grade === 'C') {
+                    sum = sum + 70;
+                }
+            }
+
+            // Compute average of grades
+            let gradeAverage = sum / grades.length;
+
+            // Determine letter grade from average
+            let result = '';
+            if (gradeAverage === 100) {
+                result = 'A';
+            } else if (gradeAverage >= 80) {
+                result = 'B';
+            } else if (gradeAverage >= 70) {
+                result = 'C';
+            }
+
+            return result;
+        }
+
+        let letterGrade = computeGrade(['A', 'A', 'A', 'A', 'A']);
+        document.write('Your Grade is ' + letterGrade);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
