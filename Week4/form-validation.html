@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <p>
+            <label>Full name</label> <br>
+            <input type="text" id="name">
+        </p>
+        <p>
+            <label>Age</label> <br>
+            <input type="number" id="age">
+        </p>
+        <p>
+            <label>Email</label> <br>
+            <input type="email" id="email">
+        </p>
+        <button type="button" onclick="onSubmit()">Submit</button>
+    </form>
+
+    <script>
+        function onSubmit(){
+            let name = document.getElementById('name').value;
+            let age = document.getElementById('age').value;
+            let email = document.getElementById('email').value;
+
+            if (!name || !age || !email) {
+                alert('All form fields are required.');
+                return;
+            }
+
+            if (age < 18) {
+                alert('Too young to be on this platform.');
+                return;
+            }
+        }
+    </script>
+</body>
+</html>

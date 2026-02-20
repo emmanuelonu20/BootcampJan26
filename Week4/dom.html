@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p id="text1">Hello World 23</p>
+
+    <div class="content">Hello World 33</div>
+
+    <p class="content">Hello World 12</p>
+
+    <button type="button" onclick="updateText()">Click Me</button>
+
+    <script>
+        function updateText() {
+            // Get element by ID
+            let dom1 = document.getElementById('text1');
+            console.log(dom1.innerHTML);
+            dom1.innerHTML = '<h1>I just got changed.</h1>';
+            dom1.style.color = 'red';
+
+            //Get element by class
+            let domArr = document.getElementsByClassName('content');
+            for(let dom of domArr) {
+                dom.style.backgroundColor = 'yellow';
+            }
+
+            //Get element by HTML tag name
+            let domArr2 = document.getElementsByTagName('p');
+            for(let dom of domArr2) {
+                dom.style.textAlign = 'center';
+            }
+        }
+    </script>
+</body>
+
+</html>
