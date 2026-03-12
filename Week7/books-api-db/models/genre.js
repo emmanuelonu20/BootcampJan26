@@ -1,25 +1,17 @@
 const Sequelize = require('sequelize');
 const db_config = require('./../db_config');
 
-const Book = db_config.define('book', {
+const Genre = db_config.define('genre', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
     },
-    title: {
+    genreName: {
         type: Sequelize.STRING,
-        allowNull: false
-    },
-    author: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-    genreId: {
-        type: Sequelize.INTEGER,
         allowNull: false
     },
 }, {timestamps: false});
-8
-module.exports = Book;
+
+module.exports = Genre;
