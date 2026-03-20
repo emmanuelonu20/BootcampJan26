@@ -1,0 +1,25 @@
+<p>books works!</p>
+
+<h1>List of books</h1>
+
+{{ libraryName }}
+
+<ul>
+    <li *ngFor="let book of books">
+        {{ book.title }}
+    </li>
+</ul>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Author</th>
+    </tr>
+
+    <tr *ngFor="let book of books">
+        <td>{{ book.id }}</td>
+        <td>{{ book.title }}</td>
+        <td>{{ book.author }}</td>
+    </tr>
+</table>
