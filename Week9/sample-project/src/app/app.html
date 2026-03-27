@@ -1,0 +1,68 @@
+<!-- Interpolation -->
+<h2>{{ title }}</h2>
+
+<!-- Property data binding -->
+<img [src]="img_url" width="250">
+
+<!-- Event binding -->
+ <br><br>
+<button type="button" (click)="showPeaceBridge()">Calgary Peace Bridge</button>
+<button type="button" (click)="showTower()">Toronto Tower</button>
+
+<!-- Attribute binding -->
+<table>
+  <tr>
+      <td>1</td>
+      <td [attr.colspan]="numColSpan">2</td>
+  </tr>
+  <tr>
+      <td>3</td>
+      <td>4</td>
+      <td>5</td>
+  </tr>
+</table>
+
+<!-- Class binding -->
+<div [class]="blueClass">Hello from the other side</div>
+
+<!-- Style binding -->
+<div [style.background-color]="bgColor">Hello again from the other side</div>
+
+<!-- Two-way binding -->
+<input type="text" [(ngModel)]="title"> {{ title }}
+
+<!-- Directives -->
+
+<!-- ngClass -->
+<div [ngClass]="{'purple': !hasError, 'red': hasError}">Another text</div>
+
+<!-- ngStyle -->
+<div [ngStyle]="{'background-color': bgColor, 'color': 'red'}">Yet another div</div>
+
+<!-- *ngFor -->
+<ul>
+  <li *ngFor="let name of studentNames">{{ name }}</li>
+</ul>
+
+<!-- *ngIf -->
+<div *ngIf="hasError" appCustom>Email is required</div>
+
+
+<div *ngIf="hasError; else elseContainer">Name is required</div>
+<ng-template #elseContainer>There are no errors.</ng-template>
+
+<!-- ngSwitch -->
+<button type="button" (click)="showTab(1)">Tab 1</button>
+<button type="button" (click)="showTab(2)">Tab 2</button>
+<button type="button" (click)="showTab(3)">Tab 3</button>
+<button type="button" (click)="showTab(4)">Tab 4</button>
+<div [ngSwitch]="currentTab">
+  <div *ngSwitchCase="1">Tab 1</div>
+  <div *ngSwitchCase="2">Tab 2</div>
+  <div *ngSwitchCase="3">Tab 3</div>
+  <div *ngSwitchDefault>Tab 4</div>
+</div>
+
+
+<!-- Custom directive -->
+ <div appCustom>Sample of using custom directive</div>
