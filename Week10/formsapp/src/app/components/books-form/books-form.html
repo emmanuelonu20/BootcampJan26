@@ -1,0 +1,43 @@
+<form [formGroup]="booksForm">
+
+    <p>
+        <label>Title</label>
+        <input type="text" formControlName="title">
+
+        <span *ngIf="titleFormControl.touched && titleFormControl.errors?.['required']">
+            The title field is required.
+        </span>
+
+        <span *ngIf="titleFormControl.dirty && titleFormControl.errors?.['minlength']">
+            The title field must be at least 3 characters.
+        </span>
+
+        <span *ngIf="titleFormControl.dirty && titleFormControl.errors?.['prohibited']">
+            The title field contains an illegal value.
+        </span>
+    </p>
+
+    <p>
+        <label>Author</label>
+        <input type="text" formControlName="author">
+    </p>
+
+    <p>
+        <label>Author Email</label>
+        <input type="email" formControlName="author_email">
+    </p>
+
+    <p>
+        <label>Genre</label>
+        <select formControlName="genre">
+            <option value="action">Action</option>
+            <option value="horror">Horror</option>
+            <option value="thriller">Thriller</option>
+            <option value="Romance">Romance</option>
+            <option value="Documentary">Documentary</option>
+        </select>
+    </p>
+
+    <button type="button" (click)="onSubmit()" [disabled]="booksForm.invalid">Submit</button>
+
+</form>
