@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { avoidWord, prohibited } from '../../custom-validation';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-books-form',
@@ -13,7 +14,7 @@ export class BooksForm {
   booksForm; //form group
 
 
-  constructor(private fb: FormBuilder){
+  constructor(private fb: FormBuilder, private router: Router){
     this.booksForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(3), avoidWord, prohibited(/admin/), prohibited(/john/)]],   //form control
       author: ['', [Validators.required, avoidWord]], //form control
@@ -24,6 +25,7 @@ export class BooksForm {
 
   onSubmit() {
     console.log(this.booksForm.value);
+    this.router.navigate(['/books']); // Navigate to a different page that displays all books.
   }
 
   // Getters
