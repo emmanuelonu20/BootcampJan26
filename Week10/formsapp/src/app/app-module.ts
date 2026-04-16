@@ -8,9 +8,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Books } from './components/books/books';
 import { BookItem } from './components/book-item/book-item';
 import { NotFound } from './components/not-found/not-found';
+import { Book } from './components/book/book';
 
 @NgModule({
-  declarations: [App, BooksForm, Books, BookItem, NotFound],
+  declarations: [App, BooksForm, Books, BookItem, NotFound, Book],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [provideBrowserGlobalErrorListeners()],
   bootstrap: [App],

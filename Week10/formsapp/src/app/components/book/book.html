@@ -1,0 +1,10 @@
+<div>ID: {{ book.id }}</div>
+<div>Title: {{ book.title }}</div>
+<div>Author: {{ book.author }}</div>
+<div>Email: {{ book.author_email }}</div>
+<div>Genre {{ book.genre }}</div>
+<div>
+    <a [routerLink]="['/view-book', book.id]">View</a>
+    <button type="button" (click)="onDelete()">Delete</button>
+</div>
+<hr>
