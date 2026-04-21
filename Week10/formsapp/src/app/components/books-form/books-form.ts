@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { avoidWord, prohibited } from '../../custom-validation';
 import { Router } from '@angular/router';
+import { BookService } from '../../services/book-service';
+import { Igenre } from '../../interfaces/igenre';
 
 @Component({
   selector: 'app-books-form',
@@ -12,20 +14,29 @@ import { Router } from '@angular/router';
 export class BooksForm {
 
   booksForm; //form group
+  genres = signal<Igenre[]>([]);
 
 
-  constructor(private fb: FormBuilder, private router: Router){
+  constructor(private fb: FormBuilder, private router: Router, private bookService: BookService){
     this.booksForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(3), avoidWord, prohibited(/admin/), prohibited(/john/)]],   //form control
       author: ['', [Validators.required, avoidWord]], //form control
-      genre: ['', [Validators.required]], //form control
+      genreId: ['', [Validators.required]], //form control
       author_email: ['', [Validators.required, Validators.email]] //form control
+    });
+
+    // Get all genres from backend
+    this.bookService.getGenres().subscribe(result => {
+      this.genres.set(result);
     });
   }
 
   onSubmit() {
     console.log(this.booksForm.value);
-    this.router.navigate(['/books']); // Navigate to a different page that displays all books.
+    this.bookService.createBook(this.booksForm.value).subscribe(result => {
+      alert('Book was created successfully');
+    });
+    //this.router.navigate(['/books']); // Navigate to a different page that displays all books.
   }
 
   // Getters

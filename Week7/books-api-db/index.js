@@ -3,7 +3,9 @@ const app = express();
 const db_config = require('./db_config');
 const Book = require('./models/book');
 const Genre = require('./models/genre');
+const cors = require('cors');
 
+app.use(cors()); //Grant access to all clients (frontends)
 app.use(express.json());
 
 //Define the relationship between Books and Genres tables
@@ -50,7 +52,9 @@ app.get('/books/:bookId', function(req, res){
 app.post('/books', function(req, res){
     const book = {
         title: req.body.title,
-        author: req.body.author
+        author: req.body.author,
+        author_email: req.body.author_email,
+        genreId: req.body.genreId
     };
 
     Book.create(book).then((result) => {
@@ -100,6 +104,15 @@ app.delete('/books/:bookId', function(req, res){
         } else {
             res.status(404).send('Book not found');
         }
+    }).catch((err) => {
+        res.status(500).send(err);
+    });
+});
+
+// Get all genres
+app.get('/genres', function(req, res){
+    Genre.findAll().then(result => {
+        res.status(200).send(result);
     }).catch((err) => {
         res.status(500).send(err);
     });

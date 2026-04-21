@@ -1,6 +1,6 @@
 <div *ngIf="book">
-    <h4>{{ book.title }}</h4>
-    <h4>{{ book.author }}</h4>
-    <h4>{{ book.author_email }}</h4>
-    <h4>{{ book.genre }}</h4>
+    <h4>{{ book().title }}</h4>
+    <h4>{{ book().author }}</h4>
+    <h4>{{ book().author_email }}</h4>
+    <h4>{{ book().genre.genreName }}</h4>
 </div>

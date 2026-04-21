@@ -16,6 +16,10 @@ const Book = db_config.define('book', {
         type: Sequelize.STRING,
         allowNull: false
     },
+    author_email: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
     genreId: {
         type: Sequelize.INTEGER,
         allowNull: false

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { BookService } from '../../services/book-service';
 import { Ibook } from '../../interfaces/ibook';
 
@@ -10,10 +10,12 @@ import { Ibook } from '../../interfaces/ibook';
 })
 export class Books implements OnInit {
 
-  books: Ibook[];
+  books = signal<Ibook[]>([]);
 
   constructor(private service: BookService){
-    this.books = service.getBooks();
+    service.getBooks().subscribe(result => {
+      this.books.set(result);
+    });
   }
 
   ngOnInit(): void {
@@ -22,10 +24,13 @@ export class Books implements OnInit {
 
   deleteBook(bookId: number){
     // Find the array index
-    const arrIndex = this.books.findIndex(b => b.id === bookId);
+    const arrIndex = this.books().findIndex(b => b.id === bookId);
 
     // Delete the book from the array
-    this.books.splice(arrIndex, 1);
+    this.books().splice(arrIndex, 1);
+
+    // Delete from DB
+    this.service.deleteBook(bookId).subscribe(result => {});
 
     alert('Book was deleted successfully.');
   }

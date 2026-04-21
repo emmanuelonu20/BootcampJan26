@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BookService } from '../../services/book-service';
 import { Ibook } from '../../interfaces/ibook';
@@ -11,10 +11,12 @@ import { Ibook } from '../../interfaces/ibook';
 })
 export class BookItem {
 
-  book: Ibook;
+  book = signal<Ibook>({} as Ibook);
 
   constructor(private route: ActivatedRoute, private bookService: BookService){
     let bookId = this.route.snapshot.paramMap.get('bookId');
-    this.book = this.bookService.getBook(parseInt(bookId!))!;
+    this.bookService.getBook(parseInt(bookId!)).subscribe(result => {
+      this.book.set(result);
+    });
   }
 }
